@@ -1,4 +1,15 @@
-# UnixelFraction & Stern-Brocot Rational Arithmetic Specification
+# 🧮 UnixelFraction & Stern-Brocot Rational Homomorphism Specification
+
+Documents and verifies exact rational observable arithmetic $Q = N / [D]$ (`UnixelFraction`), continued fraction conversions, and Stern-Brocot mediant path ordering under Sandy Maguire's Homomorphic Observation framework using QuickCheck property testing.
+
+## 1. Mathematical Foundation & Rational Homomorphisms
+
+`UnixelFraction` represents exact rational observables $Q = N / [D]$ without floating-point drift. Rational operations satisfy field homomorphism properties:
+
+1. **Addition Commutativity**: $q_1 + q_2 \equiv q_2 + q_1$
+2. **Multiplication Commutativity**: $q_1 \cdot q_2 \equiv q_2 \cdot q_1$
+3. **Continued Fraction Homomorphism**: $\text{fromCF}(\text{toCF}(q)) \equiv q$
+4. **Stern-Brocot Mediant Order Homomorphism**: $\text{fromSB}(\text{toSB}(q)) \equiv q$
 
 ```idris
 module Wiki.UnixelFractionSpec
@@ -10,37 +21,20 @@ import Core.UnixelFraction
 import Wiki.Generators
 
 %default total
-```
 
-## Homomorphic Rational Observation
-
-`UnixelFraction` represents exact rational observables $Q = N / [D]$ without floating-point rounding errors. Under Sandy Maguire's Homomorphic Observation framework, observations on rational tallies preserve addition, multiplication, and mediant path ordering.
-
-### 1. Addition Commutativity
-$$q_1 + q_2 \equiv q_2 + q_1$$
-
-```idris
+||| 1. Addition Commutativity: q1 + q2 == q2 + q1
 public export
 prop_addCommutative : UnixelFraction -> UnixelFraction -> Bool
 prop_addCommutative q1 q2 =
   rationalEquiv (addUnixelFraction q1 q2) (addUnixelFraction q2 q1)
-```
 
-### 2. Multiplication Commutativity
-$$q_1 \cdot q_2 \equiv q_2 \cdot q_1$$
-
-```idris
+||| 2. Multiplication Commutativity: q1 * q2 == q2 * q1
 public export
 prop_mulCommutative : UnixelFraction -> UnixelFraction -> Bool
 prop_mulCommutative q1 q2 =
   rationalEquiv (mulUnixelFraction q1 q2) (mulUnixelFraction q2 q1)
-```
 
-### 3. Continued Fraction Reconstruction Consistency
-Converting a fraction to continued fraction terms and back preserves rational equivalence for positive observables:
-$$\text{fromCF}(\text{toCF}(q)) \approx q$$
-
-```idris
+||| 3. Continued Fraction Reconstruction Consistency: fromCF(toCF(q)) == q
 public export
 prop_continuedFractionRoundtrip : UnixelFraction -> Bool
 prop_continuedFractionRoundtrip q =
@@ -51,13 +45,8 @@ prop_continuedFractionRoundtrip q =
          let terms = toContinuedFraction 10 q
              reconstructed = fromContinuedFraction terms
          in rationalEquiv q reconstructed || length terms == 0
-```
 
-### 4. Stern-Brocot Path Mediant Invariance
-The Stern-Brocot path preserves order and mediant bounds for positive observables:
-$$\text{fromSB}(\text{toSB}(q)) \approx q$$
-
-```idris
+||| 4. Stern-Brocot Path Mediant Invariance: fromSB(toSB(q)) == q
 public export
 prop_sternBrocotPathRoundtrip : UnixelFraction -> Bool
 prop_sternBrocotPathRoundtrip q =
@@ -68,11 +57,8 @@ prop_sternBrocotPathRoundtrip q =
       path = toSternBrocotPath 20 qSmall
       reconstructed = fromSternBrocotPath path
   in rationalEquiv qSmall reconstructed || length path == 0
-```
 
-## QuickCheck Execution Runner
-
-```idris
+||| QuickCheck Execution Runner
 public export
 auditUnixelFractionProof : IO Bool
 auditUnixelFractionProof = do
