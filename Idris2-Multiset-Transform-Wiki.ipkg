@@ -9,6 +9,6 @@ depends = base
         , Idris2-Multiset-Transform
 
 main    = Wiki.Main
-executable = multiset1-verify
+executable = multiset-transform-wiki
 
 sourcedir = "Library"
