@@ -23,7 +23,7 @@ module Wiki.ScaleAdjunctionTransformSpec
 
 import Core.BoxInt
 import Core.ScaleCategory
-import Core.TransformMultiset
+import Core.MaxelTransform
 import Math.Multiset
 import Math.BoxInt
 import Wiki.Generators

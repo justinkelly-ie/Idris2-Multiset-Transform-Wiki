@@ -9,7 +9,7 @@ import Core.VexelMaxel
 import Core.UnixelFraction
 import Core.MultisetTree
 import Core.UniverseState
-import Core.TransformMultiset
+import Core.MaxelTransform
 import Math.LawAlgebra
 
 %default total

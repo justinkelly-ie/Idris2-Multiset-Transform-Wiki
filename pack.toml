@@ -23,7 +23,7 @@ type = "local"
 path = "../Idris2-Dihedron"
 ipkg = "Idris2-Dihedron.ipkg"
 
-[custom.all.Idris2-Universe]
+[custom.all.Idris2-Cosmos]
 type = "local"
-path = "../Idris2-Universe"
-ipkg = "Idris2-Universe.ipkg"
+path = "../Idris2-Cosmos"
+ipkg = "Idris2-Cosmos.ipkg"

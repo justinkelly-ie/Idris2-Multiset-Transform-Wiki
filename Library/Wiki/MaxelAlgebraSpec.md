@@ -17,7 +17,7 @@ module Wiki.MaxelAlgebraSpec
 import Core.BoxInt
 import Core.Multiset
 import Core.VexelMaxel
-import Core.TransformMultiset
+import Core.MaxelTransform
 import Math.LawAlgebra
 import Wiki.Generators
 
@@ -59,8 +59,8 @@ prop_galoisSubsumption m =
 public export
 prop_actTransformVexelDistributive : MaxelTransform Unixel Unixel -> Vexel -> Vexel -> Bool
 prop_actTransformVexelDistributive t v1 v2 =
-  let lhs = canonicalizeVexel (actTransformVexel t (addM v1 v2))
-      rhs = canonicalizeVexel (addM (actTransformVexel t v1) (actTransformVexel t v2))
+  let lhs = canonicalizeVexel (actTransformVexel t (addVexel v1 v2))
+      rhs = canonicalizeVexel (addVexel (actTransformVexel t v1) (actTransformVexel t v2))
       diff = canonicalizeVexel (subVexel lhs rhs)
   in diff == MkVexel []
 
