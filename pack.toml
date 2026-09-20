@@ -17,3 +17,13 @@ ipkg = "Idris2-Multiset-Core.ipkg"
 type = "local"
 path = "../Idris2-Multiset-Transform"
 ipkg = "Idris2-Multiset-Transform.ipkg"
+
+[custom.all.Idris2-Dihedron]
+type = "local"
+path = "../Idris2-Dihedron"
+ipkg = "Idris2-Dihedron.ipkg"
+
+[custom.all.Idris2-Universe]
+type = "local"
+path = "../Idris2-Universe"
+ipkg = "Idris2-Universe.ipkg"

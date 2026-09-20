@@ -17,6 +17,7 @@ module Wiki.MaxelAlgebraSpec
 import Core.BoxInt
 import Core.Multiset
 import Core.VexelMaxel
+import Core.TransformMultiset
 import Math.LawAlgebra
 import Wiki.Generators
 
@@ -54,6 +55,21 @@ prop_galoisSubsumption m =
   let mCan = canonicalizeMaxel m
   in mCan == mCan
 
+||| 5. Native MaxelTransform Linearity on Vexel using MultisetAlgebra: T . (v1 + v2) == T . v1 + T . v2
+public export
+prop_actTransformVexelDistributive : MaxelTransform Unixel Unixel -> Vexel -> Vexel -> Bool
+prop_actTransformVexelDistributive t v1 v2 =
+  let lhs = canonicalizeVexel (actTransformVexel t (addM v1 v2))
+      rhs = canonicalizeVexel (addM (actTransformVexel t v1) (actTransformVexel t v2))
+      diff = canonicalizeVexel (subVexel lhs rhs)
+  in diff == MkVexel []
+
+||| 6. Maxel <-> MaxelTransform Roundtrip Converter: transformToMaxel (maxelToTransform sec frac m) == canonicalizeMaxel m
+public export
+prop_maxelTransformRoundtrip : MetricSector -> UnixelFraction -> Maxel -> Bool
+prop_maxelTransformRoundtrip sec frac m =
+  transformToMaxel (maxelToTransform sec frac m) == canonicalizeMaxel m
+
 ||| QuickCheck Execution Runner
 public export
 auditMaxelAlgebraProof : IO Bool
@@ -62,5 +78,8 @@ auditMaxelAlgebraProof = do
   let r2 = qc3 prop_actMaxelScalarLinear
   let r3 = qc prop_wedgeNilpotent
   let r4 = qc prop_galoisSubsumption
-  pure (r1.pass == Just True && r2.pass == Just True && r3.pass == Just True && r4.pass == Just True)
+  let r5 = qc3 prop_actTransformVexelDistributive
+  let r6 = qc3 prop_maxelTransformRoundtrip
+  pure (r1.pass == Just True && r2.pass == Just True && r3.pass == Just True && r4.pass == Just True &&
+        r5.pass == Just True && r6.pass == Just True)
 ```

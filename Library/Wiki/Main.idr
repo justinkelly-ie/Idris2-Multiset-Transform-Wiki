@@ -10,6 +10,8 @@ import Wiki.MaxelAlgebraSpec
 import Wiki.UnixelFractionSpec
 import Wiki.MultisetTreeSpec
 import Wiki.StatefulLawSpec
+import Wiki.ScaleAdjunctionTransformSpec
+import Wiki.StreamAdjunctionSpec
 
 %default total
 
@@ -29,6 +31,9 @@ main = do
   putStrLn "  ⚡ IDRIS2-QUICKCHECK GENERATIVE PROPERTY SUITES ⚡  "
   putStrLn "--------------------------------------------------------"
 
+  p0 <- auditStreamAdjunctionProof
+  printTestResult "FreeWave ⊣ ForgetfulMonoid Adjunction & Monad Laws (QuickCheck)" p0
+
   p1 <- auditMaxelAlgebraProof
   printTestResult "Maxel & Vexel Homomorphic Properties (QuickCheck)" p1
 
@@ -40,6 +45,9 @@ main = do
 
   p4 <- auditStatefulLawProof
   printTestResult "UniverseState Capacity & Law Monoid (QuickCheck)" p4
+
+  p5 <- auditScaleGaloisTransformProof
+  printTestResult "ScaleFunctor & Galois Adjunction Dualities (QuickCheck)" p5
 
   putStrLn "\n--------------------------------------------------------"
   putStrLn "  🔍 STATIC PROOF WITNESS AUDITS 🔍  "
@@ -55,12 +63,13 @@ main = do
   printTestResult "Multiset Compactness & Jaccard Overlap" auditMultisetCompactnessRatioProof
   printTestResult "Law Algebra Monoid & Galois Connection" auditLawAlgebraMonoidProof
 
-  let allQc = p1 && p2 && p3 && p4
+  let allQc = p0 && p1 && p2 && p3 && p4 && p5
   let allAudits = auditMultisetTreeLookupProof && auditMultisetTreeTokenSumProof &&
                   auditBoxSpecTreeOrderingProof && auditTreeUniverseScalingProof &&
                   auditContinuedFractionProof && auditSternBrocotProof &&
                   auditHehnerScaleConversionProof && auditMultisetHehnerTriadProof &&
                   auditMultisetCompactnessRatioProof && auditLawAlgebraMonoidProof
+
 
   putStrLn "========================================================"
   if allQc && allAudits

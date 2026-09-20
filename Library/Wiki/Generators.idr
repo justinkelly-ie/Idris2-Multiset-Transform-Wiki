@@ -2,12 +2,14 @@ module Wiki.Generators
 
 import public QuickCheck
 import Data.List
+import Data.Nat
 import Core.BoxInt
 import Core.Multiset
 import Core.VexelMaxel
 import Core.UnixelFraction
 import Core.MultisetTree
 import Core.UniverseState
+import Core.TransformMultiset
 import Math.LawAlgebra
 
 %default total
@@ -54,6 +56,20 @@ Arbitrary Maxel where
     in coarbitrary t gen
 
 public export
+Arbitrary MetricSector where
+  arbitrary = do
+    n <- arbitrary {a = Nat}
+    pure $ case clampNat n 4 of
+      1 => EllipticSector
+      2 => HyperbolicSector
+      3 => ParabolicSector
+      _ => SubstrateSector
+  coarbitrary EllipticSector gen = coarbitrary (the Nat 0) gen
+  coarbitrary HyperbolicSector gen = coarbitrary (the Nat 1) gen
+  coarbitrary ParabolicSector gen = coarbitrary (the Nat 2) gen
+  coarbitrary SubstrateSector gen = coarbitrary (the Nat 3) gen
+
+public export
 Arbitrary UnixelFraction where
   arbitrary = do
     n <- arbitrary {a = BoxInt}
@@ -61,6 +77,15 @@ Arbitrary UnixelFraction where
     pure (mkUnixelFraction n (clampNat dRaw 50))
   coarbitrary (MkUnixelFraction n (MkUnixel d)) gen =
     coarbitrary (unwrapBox n) (coarbitrary d gen)
+
+public export
+Arbitrary (MaxelTransform Unixel Unixel) where
+  arbitrary = do
+    sec <- arbitrary
+    frac <- arbitrary
+    m <- arbitrary {a = Maxel}
+    pure (maxelToTransform sec frac m)
+  coarbitrary t gen = coarbitrary (transformToMaxel t) gen
 
 public export
 Arbitrary SternBrocotBranch where
