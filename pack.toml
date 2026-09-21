@@ -1,29 +1,29 @@
 [package]
-name = "Idris2-Multiset-Transform-Wiki"
+name = "FinSc-Multiset-Transform-Wiki"
 version = "0.1.0"
-ipkg = "Idris2-Multiset-Transform-Wiki.ipkg"
+ipkg = "FinSc-Multiset-Transform-Wiki.ipkg"
 
 [custom.all.idris2-QuickCheck]
 type = "local"
 path = "../idris2-QuickCheck"
 ipkg = "idris2-QuickCheck.ipkg"
 
-[custom.all.Idris2-Multiset-Core]
+[custom.all.FinSc-Multiset-Core]
 type = "local"
-path = "../Idris2-Multiset-Core"
-ipkg = "Idris2-Multiset-Core.ipkg"
+path = "../FinSc-Multiset-Core"
+ipkg = "FinSc-Multiset-Core.ipkg"
 
-[custom.all.Idris2-Multiset-Transform]
+[custom.all.FinSc-Multiset-Transform]
 type = "local"
-path = "../Idris2-Multiset-Transform"
-ipkg = "Idris2-Multiset-Transform.ipkg"
+path = "../FinSc-Multiset-Transform"
+ipkg = "FinSc-Multiset-Transform.ipkg"
 
-[custom.all.Idris2-Dihedron]
+[custom.all.FinSc-Dihedron]
 type = "local"
-path = "../Idris2-Dihedron"
-ipkg = "Idris2-Dihedron.ipkg"
+path = "../FinSc-Dihedron"
+ipkg = "FinSc-Dihedron.ipkg"
 
-[custom.all.Idris2-Cosmos]
+[custom.all.FinSc-Cosmos]
 type = "local"
-path = "../Idris2-Cosmos"
-ipkg = "Idris2-Cosmos.ipkg"
+path = "../FinSc-Cosmos"
+ipkg = "FinSc-Cosmos.ipkg"

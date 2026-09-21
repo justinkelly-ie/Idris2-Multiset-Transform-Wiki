@@ -6,7 +6,7 @@
 
 ## 🏛️ Overview
 
-`Idris2-Multiset2` formalizes next-generation constructivist data structures:
+`FinSc-Multiset2` formalizes next-generation constructivist data structures:
 
 1. **Balanced Binary Multiset Search Trees (`MultisetTree a`)**:
    Provides $O(\log N)$ lookup, insertion, and token multiplicity sum preservation, replacing linear association lists for large-scale token operations.
@@ -23,9 +23,9 @@
 
 | Module | Description |
 |---|---|
-| [`Core.Multiset`](../../Idris2-Multiset2/src/Core/Multiset.idr) | Fundamental `Box` multiset containers, BoxSpec Dyck walks, and Young integer partitions. |
-| [`Core.MultisetTree`](../../Idris2-Multiset2/src/Core/MultisetTree.idr) | $O(\log N)$ balanced multiset trees and `TreeUniverseState`. |
-| [`Core.Polynumber`](../../Idris2-Multiset2/src/Core/Polynumber.idr) | Polynumber Cauchy product, cyclotomic division, and Caret operation ($\wedge$). |
-| [`Core.UnixelFraction`](../../Idris2-Multiset2/src/Core/UnixelFraction.idr) | Rational `UnixelFraction`, Stern-Brocot pathfinding, and Hehner scale conversions. |
-| [`Core.VexelMaxel`](../../Idris2-Multiset2/src/Core/VexelMaxel.idr) | Multiset tensor hierarchy (`Unixel`, `Pixel`, `Voxel`, `Vexel`, `Maxel`, `Boxel`, `HyperBoxel`). |
-| [`Math.LawAlgebra`](../../Idris2-Multiset2/src/Math/LawAlgebra.idr) | Monoid $(\wedge, \otimes)$, multiset pushforward ($f_*$), pullback ($f^*$), and Galois Connections. |
+| [`Core.Multiset`](../../FinSc-Multiset2/src/Core/Multiset.idr) | Fundamental `Box` multiset containers, BoxSpec Dyck walks, and Young integer partitions. |
+| [`Core.MultisetTree`](../../FinSc-Multiset2/src/Core/MultisetTree.idr) | $O(\log N)$ balanced multiset trees and `TreeUniverseState`. |
+| [`Core.Polynumber`](../../FinSc-Multiset2/src/Core/Polynumber.idr) | Polynumber Cauchy product, cyclotomic division, and Caret operation ($\wedge$). |
+| [`Core.UnixelFraction`](../../FinSc-Multiset2/src/Core/UnixelFraction.idr) | Rational `UnixelFraction`, Stern-Brocot pathfinding, and Hehner scale conversions. |
+| [`Core.VexelMaxel`](../../FinSc-Multiset2/src/Core/VexelMaxel.idr) | Multiset tensor hierarchy (`Unixel`, `Pixel`, `Voxel`, `Vexel`, `Maxel`, `Boxel`, `HyperBoxel`). |
+| [`Math.LawAlgebra`](../../FinSc-Multiset2/src/Math/LawAlgebra.idr) | Monoid $(\wedge, \otimes)$, multiset pushforward ($f_*$), pullback ($f^*$), and Galois Connections. |
